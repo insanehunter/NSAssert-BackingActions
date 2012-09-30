@@ -1,6 +1,5 @@
 /*
  * NSAssert+BackingActions.h
- * NSAssert 
  *
  * This header provides NSAssert based macros which provide some backing actions
  * to be performed when NS_BLOCK_ASSERTIONS is defined.
