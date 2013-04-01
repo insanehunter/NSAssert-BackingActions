@@ -36,7 +36,7 @@
 
     #if !defined(NSReleaseAssertionLog)
         #if !defined(NS_ASSERT_SUPRESS_BACKING_ACTION_LOGGING)
-            #define NSReleaseAssertionLog(desc, ...)    NSLog(desc, __VA_ARGS__)
+            #define NSReleaseAssertionLog(desc, ...)    NSLog(desc, ##__VA_ARGS__)
         #else
             #define NSReleaseAssertionLog(desc, ...)
         #endif // !defined(NS_ASSERT_SUPRESS_BACKING_ACTION_LOGGING)
@@ -47,21 +47,21 @@
             if (!(condition)) {                                                             \
                 NSReleaseAssertionLog(@"*** Assertion failure in %@, %s:%d. Reason: %@",    \
                     NSStringFromSelector(_cmd), __FILE__, __LINE__,                         \
-                    [NSString stringWithFormat:desc, __VA_ARGS__]);                         \
+                    [NSString stringWithFormat:desc, ##__VA_ARGS__]);                         \
                 releaseAction;                                                              \
             }                                                                               \
         }
     
     #define NSAssertOrReturn(condition, desc, ...) \
-                    NSAssertWithReleaseAction(return, condition, desc, __VA_ARGS__)
+                    NSAssertWithReleaseAction(return, condition, desc, ##__VA_ARGS__)
     #define NSAssertOrReturnNil(condition, desc, ...) \
-                    NSAssertWithReleaseAction(return nil, condition, desc, __VA_ARGS__)
+                    NSAssertWithReleaseAction(return nil, condition, desc, ##__VA_ARGS__)
     #define NSAssertOrReturnNO(condition, desc, ...) \
-                    NSAssertWithReleaseAction(return NO, condition, desc, __VA_ARGS__)
+                    NSAssertWithReleaseAction(return NO, condition, desc, ##__VA_ARGS__)
     #define NSAssertOrBreak(condition, desc, ...) \
-                    NSAssertWithReleaseAction(break, condition, desc, __VA_ARGS__)
+                    NSAssertWithReleaseAction(break, condition, desc, ##__VA_ARGS__)
     #define NSAssertOrContinue(condition, desc, ...) \
-                    NSAssertWithReleaseAction(continue, condition, desc, __VA_ARGS__)
+                    NSAssertWithReleaseAction(continue, condition, desc, ##__VA_ARGS__)
     
     #define NSParameterAssertOrReturn(condition) \
                     NSAssertWithReleaseAction(return, condition, @"Invalid parameter not satisfying: %s", #condition)
